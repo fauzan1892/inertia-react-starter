@@ -34,19 +34,19 @@ function App({ auth, header, sidebar, children }) {
         {
             name: "Profil",
             route: "#",
-            sidebar: ["profile"],
+            sidebar: ["profile.edit"],
             icon: <UserIcon width={25} className="flex text-gray-600" />,
             submenu: [
                 {
                     name: "Profil 1",
-                    route: "profile",
+                    route: "profile.edit",
                     icon: <UserIcon width={25} className="text-gray-600" />,
                 },
             ],
         },
         {
             name: "Pages",
-            route: "pages",
+            route: "pages.index",
             icon: <DocumentTextIcon width={25} className="text-gray-600" />,
             submenu: null,
         },

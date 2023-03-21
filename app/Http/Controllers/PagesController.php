@@ -17,7 +17,7 @@ class PagesController extends Controller
     {
         //
         $pages = Pages::latest()->paginate(5);
-        return Inertia::render('Pages/Index', ['pages' => $pages, 'sidebar' => 'pages']);
+        return Inertia::render('Pages/Index', ['pages' => $pages, 'sidebar' => 'pages.index']);
     }
 
     /**
@@ -26,7 +26,7 @@ class PagesController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Pages/Create', ['sidebar' => 'pages']);
+        return Inertia::render('Pages/Create', ['sidebar' => 'pages.index']);
     }
 
     /**

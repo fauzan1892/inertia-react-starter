@@ -27,10 +27,10 @@ function Menu({ menu, title, sidebar }) {
                     const cssActive =
                         "bg-blue-300 bg-opacity-10 px-2 border border-blue-100 py-2 rounded-md text-blue-900";
                     const texActive = "text-blue-500";
-                    const menuActive = url.startsWith("/" + val.route)
+                    const menuActive = val.route == sidebar
                         ? cssActive
                         : "px-3 py-2";
-                    const textActive = url.startsWith("/" + val.route)
+                    const textActive = val.route == sidebar
                         ? texActive
                         : "text-gray-700";
                     const menuHtml =
@@ -38,18 +38,15 @@ function Menu({ menu, title, sidebar }) {
                             <div>
                                 <div
                                     onClick={() => setShowSub(!showSub)}
-                                    className={`flex w-full justify-between ${
-                                        val.sidebar.includes(sidebar)
+                                    className={`flex w-full justify-between ${val.sidebar.includes(sidebar)
                                             ? cssActive
                                             : "px-3 py-2"
-                                    } ${
-                                        showSub ? cssActive : ""
-                                    } cursor-pointer`}
+                                        } ${showSub ? cssActive : ""
+                                        } cursor-pointer`}
                                 >
                                     <div
-                                        className={`flex items-center ml-2 mt-1 text-md ${
-                                            showSub ? texActive : ""
-                                        }`}
+                                        className={`flex items-center ml-2 mt-1 text-md ${showSub ? texActive : ""
+                                            }`}
                                     >
                                         {val.icon}
                                         <span className="text-sm ml-2">
@@ -76,20 +73,19 @@ function Menu({ menu, title, sidebar }) {
                                     </div>
                                 </div>
                                 <ul
-                                    className={`${
-                                        showSub
+                                    className={`${showSub
                                             ? "display"
                                             : val.sidebar.includes(sidebar)
-                                            ? "display"
-                                            : "hidden"
-                                    }`}
+                                                ? "display"
+                                                : "hidden"
+                                        }`}
                                 >
-                                    <Submenu submenu={val.submenu} />
+                                    <Submenu submenu={val.submenu} sidebar={sidebar} />
                                 </ul>
                             </div>
                         ) : (
                             <Link
-                                href={val.route == "#" ? "#!" : val.route}
+                                href={route(val.route)}
                                 className={`flex w-full justify-between ${menuActive} cursor-pointer`}
                             >
                                 <div

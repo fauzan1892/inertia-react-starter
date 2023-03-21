@@ -3,11 +3,15 @@ import { Head } from "@inertiajs/react";
 import { useState } from "react";
 import { Link } from "@inertiajs/react";
 import { usePage } from "@inertiajs/react";
-import Pagination from "@/Layouts/Pagination";
-import moment from "moment";
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const Index = (props) => {
     const { pages } = usePage().props;
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    );
     // console.log(pages.data);
     return (
         <AuthenticatedLayout
@@ -21,12 +25,26 @@ const Index = (props) => {
             }
         >
             <Head title="Create Pages" />
-            <div className="py-12">
+            <div className="py-2">
+                <div className="text-sm breadcrumbs sm:px-6 lg:px-8">
+                    <ul>
+                        <li>
+                            <a>Home</a>
+                        </li>
+                        <li> Create Pages</li>
+                    </ul>
+                </div>
                 <div className="max-w-8xl mx-auto h-100 sm:px-6 lg:px-8">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg w-full">
-                        <div class="form-control w-full">
-                            <label class="label">>Enter amount</label>
-                            <input type="text" placeholder="Type here" class="input w-full max-w-xs" />
+                        <div className="form-control w-full mb-3">
+                            <input type="text" placeholder="Title" className="input w-full input-bordered border-solid border-2 border-gray-300 " />
+                        </div>
+                        <div className="form-control w-full border-solid border-2 border-gray-300">
+                            <Editor
+                                editorStyle={{ height: '200px', paddingLeft:'15px', paddingRight:'15px' }}
+                                editorState={editorState}
+                                onEditorStateChange={setEditorState}
+                            />
                         </div>
                     </div>
                 </div>
